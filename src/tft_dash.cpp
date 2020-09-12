@@ -14,6 +14,12 @@
 #include <fonts/Furara8pt7b.h> //Futara 8pt
 //GFX
 #include <gfx/hondaLogo.h> //honda logo for splash
+#include <gfx/engineIcon.h> //check engine icon
+#include <gfx/gpsIcon.h> //gps lock icon
+#include <gfx/sidestand.h> //sidestand down icon
+#include <gfx/engTemp.h> //eng temp high icon
+#include <gfx/snow.h> //snow warning icon
+#include <gfx/shiftLight.h> //shift warning icon
 
 //DISPLAY
 #define TFT_DC 2
@@ -138,6 +144,7 @@ byte initHonda();
 int initComms();
 uint8_t calcChecksum(const uint8_t* data, uint8_t len);
 void readGPS();
+void drawIconBox();
 
 
 void setup() {
@@ -230,6 +237,18 @@ void drawUIElements() {
   drawRPMUI();
   drawGearIndBox();
   drawEngTempBar();
+  drawIconBox();
+}
+
+void drawIconBox() {
+    tft.setCursor(0,0);
+    tft.drawBitmap(0,0, engineIcon, 32, 32, ILI9341_ORANGE);
+    tft.drawBitmap(40,0, engTemp, 32, 32, DARK_GREEN);
+    tft.drawBitmap(80,0, sidestand, 32, 32, DARK_GREEN);
+    tft.drawBitmap(120,0, gpsIcon, 32, 32, DARK_GREEN);
+    tft.drawBitmap(160,0, snow, 32, 32, DARK_GREEN);
+    tft.drawBitmap(200,0, shiftLight, 32, 32, DARK_GREEN);
+
 }
 
 void drawRPMBar(int rpm) { //32 bars
@@ -258,6 +277,14 @@ void drawRPMBar(int rpm) { //32 bars
   canvas.setCursor(0,20);
   canvas.print(rpm);
   tft.drawRGBBitmap(240,72,canvas.getBuffer(),90,24);
+
+  if(rpm > 9000) {
+    tft.drawBitmap(200,0, shiftLight, 32, 32, ILI9341_RED);
+  }
+  else {
+    tft.drawBitmap(200,0, shiftLight, 32, 32, DARK_GREEN);
+  }
+
 }
 
 void drawGear(int gear) {
@@ -298,6 +325,7 @@ void drawTempBar(int temp) { // 12 bars
     else {
       tft.fillRect(0,190-(i*10),20,6, DARK_GREEN);
     }
+
   }   
   
   GFXcanvas16 canvas(40, 24);
@@ -306,6 +334,13 @@ void drawTempBar(int temp) { // 12 bars
   canvas.setCursor(0,20);
   canvas.print(temp);
   tft.drawRGBBitmap(0,200,canvas.getBuffer(),40,24);
+
+  if(temp > 105) {
+    tft.drawBitmap(40,0, engTemp, 32, 32, ILI9341_RED);
+  }
+  else {
+    tft.drawBitmap(40,0, engTemp, 32, 32, DARK_GREEN);
+  }
 }
 
 void drawBattVolt(float volts) {
