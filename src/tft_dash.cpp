@@ -20,6 +20,7 @@
 #include <gfx/engTemp.h> //eng temp high icon
 #include <gfx/snow.h> //snow warning icon
 #include <gfx/shiftLight.h> //shift warning icon
+#include <gfx/lowBatt.h> //battery warning icon
 
 //DISPLAY
 #define TFT_DC 2
@@ -248,6 +249,8 @@ void drawIconBox() {
     tft.drawBitmap(120,0, gpsIcon, 32, 32, DARK_GREEN);
     tft.drawBitmap(160,0, snow, 32, 32, DARK_GREEN);
     tft.drawBitmap(200,0, shiftLight, 32, 32, DARK_GREEN);
+    tft.drawBitmap(240,0, lowBatt, 32, 32, DARK_GREEN);
+    tft.drawBitmap(280,0, shiftLight, 32, 32, DARK_GREEN);
 
 }
 
