@@ -10,7 +10,7 @@ It also contains a GPS module and support for an ambient temperature / humidity 
 
 ## Hardware
 
-The below hardware is used in the final design. For further information see the (https://github.com/mickwheelz/Honda-Motorcycle-Dash/wiki/Hardware)[hardware]section of the wiki
+The below hardware is used in the final design. For further information see the [hardware](https://github.com/mickwheelz/Honda-Motorcycle-Dash/wiki/Hardware) section of the wiki
 
 * Espressif ESP32 (Node32S for development, ESP32WROOM for build)
 * 2.8" ILI9341 based SPI TFT Display
@@ -48,7 +48,7 @@ The below features are intended to be available in the future
 * Smartphone Notifications (ESP32 BLE)
 * Smartphone "Now Playing" (ESP32 BLE)
 
-For further information, see the software section of the wiki
+For further information, see the [software](https://github.com/mickwheelz/Honda-Motorcycle-Dash/wiki/Software) section of the wiki section of the wiki
 
 ## Special Thanks To
 
