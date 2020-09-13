@@ -21,6 +21,7 @@
 #include <gfx/snow.h> //snow warning icon
 #include <gfx/shiftLight.h> //shift warning icon
 #include <gfx/lowBatt.h> //battery warning icon
+#include <gfx/fanIcon.h> //fan on icon
 
 //DISPLAY
 #define TFT_DC 2
@@ -107,6 +108,7 @@ uint8_t gear = 0;
 uint8_t engState = 0;
 uint8_t switches = 0;
 uint16_t gpsSpeed = 0;
+uint16_t bikeSpeed = 0;
 
 Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 DHT dht(DHT_PIN, DHT_TYPE);
@@ -176,12 +178,13 @@ void loop() {
     //set some values for testing display
     rpm = 10000;
     engTempC = 120;
-    ambiC = 25;
-    battV = 13.8;
+    ambiC = 2.5;
+    battV = 11.9;
     tpsP = 69;
     iatC = 45;
     gear = 6;
     gpsSpeed = 100;
+    bikeSpeed = 105;
   }
   
   //draw code
@@ -250,8 +253,7 @@ void drawIconBox() {
     tft.drawBitmap(160,0, snow, 32, 32, DARK_GREEN);
     tft.drawBitmap(200,0, shiftLight, 32, 32, DARK_GREEN);
     tft.drawBitmap(240,0, lowBatt, 32, 32, DARK_GREEN);
-    tft.drawBitmap(280,0, shiftLight, 32, 32, DARK_GREEN);
-
+    tft.drawBitmap(280,0, fanIcon, 32, 32, DARK_GREEN);
 }
 
 void drawRPMBar(int rpm) { //32 bars
@@ -338,6 +340,7 @@ void drawTempBar(int temp) { // 12 bars
   canvas.print(temp);
   tft.drawRGBBitmap(0,200,canvas.getBuffer(),40,24);
 
+  //Show Temp Warning
   if(temp > 105) {
     tft.drawBitmap(40,0, engTemp, 32, 32, ILI9341_RED);
   }
@@ -353,6 +356,15 @@ void drawBattVolt(float volts) {
   canvas.setCursor(0,20);
   canvas.print(volts,1);
   tft.drawRGBBitmap(64,200,canvas.getBuffer(),50,22);
+
+  //show low batt warning
+  if(volts < 12) {
+    tft.drawBitmap(240,0, lowBatt, 32, 32, ILI9341_RED);
+  }
+  else {
+    tft.drawBitmap(240,0, lowBatt, 32, 32, DARK_GREEN);
+  }
+
 }
 
 void drawTPS(int tps) {  
@@ -380,6 +392,14 @@ void drawAmbiTemp(float temp) {
   canvas.setCursor(0,20);
   canvas.print(temp,1);
   tft.drawRGBBitmap(256,200,canvas.getBuffer(),50,24);
+
+  //show snow warning
+  if(temp < 3) {
+    tft.drawBitmap(160,0, snow, 32, 32, ILI9341_WHITE);
+  }
+  else {
+    tft.drawBitmap(160,0, snow, 32, 32, DARK_GREEN);
+  }
 }
 
 void drawRPMUI() {
