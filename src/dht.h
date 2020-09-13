@@ -8,5 +8,10 @@ ESP32       DJT22
 GND         GND
 */
 
+struct DHTRESPONSE {
+    float tempC;
+    float humidP;
+};
+
 void setupDHT();
-void getAmbiTempDHT();
+DHTRESPONSE getDHTValues();

@@ -13,8 +13,7 @@ GND	        GND
 19	        MISO
 */
 
-void debugValues();
-void drawUIElements();
+void setupUI();
 void drawRPMBar(int rpm);
 void drawGear(int gear);
 void drawTempBar(int temp);

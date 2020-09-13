@@ -1,4 +1,5 @@
 #include <TinyGPS++.h>
+#include "gps.h"
 
 #define gpsUART Serial1
 #define GPS_RX 12
@@ -10,9 +11,12 @@ void setupGPS() {
     gpsUART.begin(4800, SERIAL_8N1,GPS_RX,GPX_TX);
 }
 
-void readGPS() {
+GPSRESPONSE readGPS() {
   while (gpsUART.available() > 0) {
     gps.encode(gpsUART.read());
   }
-  //gpsSpeed = gps.speed.mph();
+  GPSRESPONSE response;
+  //response.speedKPH = gps.speed.mph;
+  //response.speedMPH = gps.speed.mph;
+  return response;
 }

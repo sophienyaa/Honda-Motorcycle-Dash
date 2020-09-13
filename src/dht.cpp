@@ -1,5 +1,6 @@
 #include <DHT.h>
 #include <DHT_U.h>
+#include "dht.h"
 
 #define DHT_PIN 22
 #define DHT_TYPE DHT22
@@ -10,10 +11,8 @@ void setupDHT() {
     dht.begin();
 }
 
-float getAmbiTempDHT() {
-  return dht.readTemperature();
-}
-
-float getAmbiHumidDHT() {
-  return dht.readHumidity();
+DHTRESPONSE getDHTValues() {
+    DHTRESPONSE response;
+    response.tempC = dht.readTemperature();
+    response.humidP = dht.readHumidity();
 }
