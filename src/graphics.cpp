@@ -41,7 +41,7 @@ void setupDisplay() {
     tft.drawBitmap(0,0, hondaLogo, 320, 240, ILI9341_WHITE);
 }
 
-void drawUIElements() {
+void setupUI() {
     tft.fillScreen(ILI9341_BLACK);
     //used for static elements
     drawRPMUI();

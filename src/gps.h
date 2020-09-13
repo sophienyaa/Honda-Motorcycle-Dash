@@ -8,5 +8,12 @@ ESP32       GPS
 5V          VCC
 GND         GND
 */
+
+struct GPSRESPONSE {
+    double speedMPH;
+    double speedKPH;
+    //more to come
+};
+
 void setupGPS();
-void readGPS();
+GPSRESPONSE readGPS();

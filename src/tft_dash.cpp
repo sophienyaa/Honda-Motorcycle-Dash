@@ -1,5 +1,4 @@
 #include <Arduino.h>
-
 #include "utils.h"
 #include "graphics.h"
 #include "ecu.h"
@@ -11,36 +10,41 @@
 //Flag for bike, if false sets fake values on display for bench testing
 #define BIKE false
 
-//GLOBAL VALUES TO DISPLAY
-uint16_t rpm = 0;
-int8_t engTempC = 0;
-float ambiC = 0;
-float battV = 0;
-uint8_t tpsP = 0;
-float iatC = 0;
-uint8_t gear = 0;
-uint8_t engState = 0;
-uint8_t switches = 0;
-uint16_t gpsSpeed = 0;
-uint16_t bikeSpeed = 0;
+int ecuConnected = 0;
 
 void setup() {
-
   setupDHT();
   setupDisplay();
-  initHonda();
-  drawUIElements();
+  ecuConnected = setupECU(DEBUG);
+  setupUI();
   delay(50);
 }
 
 void loop() {
 
+TABLE11RESPONSE table11;
+TABLED1RESPONSE tableD1;
+DHTRESPONSE dhtValues;
+GPSRESPONSE gpsValues;
+
+  //GLOBAL VALUES TO DISPLAY
+  uint16_t rpm = 0;
+  int8_t engTempC = 0;
+  float ambiC = 0;
+  float battV = 0;
+  uint8_t tpsP = 0;
+  float iatC = 0;
+  uint8_t gear = 0;
+  uint8_t engState = 0;
+  uint8_t switches = 0;
+  uint16_t gpsSpeed = 0;
+  uint16_t bikeSpeed = 0;
+
   if(BIKE) {
-    showDataTable11();
-    showDataTableD1();
-    getAmbiTempDHT();
-    readGPS();
-    debugValues();
+    table11 = showDataTable11();
+    tableD1 = showDataTableD1();
+    dhtValues = getDHTValues();
+    gpsValues = readGPS();
   }
   else {
     //set some values for testing display
@@ -63,41 +67,8 @@ void loop() {
   drawTPS(tpsP);
   drawIATC(iatC);
   drawGear(gear);
-}
 
-/*
-void debugValues() {
-  debug.print("RPM: ");
-  debug.print(rpm);
-  
-  debug.print(" ENG C: ");
-  debug.print(engTempC);
-  
-  debug.print(" AMBI C: ");
-  debug.print(ambiC);
-  
-  debug.print(" BATT V: ");
-  debug.print(battV);
-  
-  debug.print(" TPS %: ");
-  debug.print(tpsP);
-  
-  debug.print(" IAT C: ");
-  debug.print(iatC);
-  
-  debug.print(" GEAR: ");
-  debug.print(gear);
-  
-  debug.print(" ENG: ");
-  debug.print(engState);
-  
-  debug.print(" SWS: ");
-  debug.print(switches);
-
-  debug.print(" GSPD: ");
-  debug.print(gpsSpeed);
-  
-  debug.println();
-  
+  if(DEBUG) {
+    //printDebugValues();
+  }
 }
-*/
