@@ -8,7 +8,7 @@
 //Flag for debug mode, prints to UART0
 #define DEBUG true
 //Flag for bike, if false sets fake values on display for bench testing
-#define BIKE false
+#define BIKE true
 
 int ecuConnected = 0;
 
@@ -42,6 +42,11 @@ GPSRESPONSE gpsValues;
 
   if(BIKE) {
     table11 = showDataTable11();
+
+    rpm = table11.rpm;
+    engTempC = table11.ectTemp;
+    battV = table11.battVolts;
+
     tableD1 = showDataTableD1();
     dhtValues = getDHTValues();
     gpsValues = readGPS();
