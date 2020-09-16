@@ -16,7 +16,9 @@ GPSRESPONSE readGPS() {
     gps.encode(gpsUART.read());
   }
   GPSRESPONSE response;
-  //response.speedKPH = gps.speed.mph;
-  //response.speedMPH = gps.speed.mph;
+  response.speedKPH = gps.speed.kmph();
+  response.speedMPH = gps.speed.mph();
+  response.gpsLock = gps.sentencesWithFix() > 0 ? 1 : 0;
+  response.cardinalDirection = gps.course.isValid() ? gps.cardinal(gps.course.deg()) : "---";
   return response;
 }

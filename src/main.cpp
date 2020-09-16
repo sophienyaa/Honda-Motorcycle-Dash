@@ -27,51 +27,42 @@ TABLED1RESPONSE tableD1;
 DHTRESPONSE dhtValues;
 GPSRESPONSE gpsValues;
 
-  //GLOBAL VALUES TO DISPLAY
-  uint16_t rpm = 0;
-  int8_t engTempC = 0;
-  float ambiC = 0;
-  float battV = 0;
-  uint8_t tpsP = 0;
-  float iatC = 0;
-  uint8_t gear = 0;
-  uint8_t engState = 0;
-  uint8_t switches = 0;
-  uint16_t gpsSpeed = 0;
-  uint16_t bikeSpeed = 0;
-
   if(BIKE) {
     table11 = showDataTable11();
-
-    rpm = table11.rpm;
-    engTempC = table11.ectTemp;
-    battV = table11.battVolts;
-
     tableD1 = showDataTableD1();
     dhtValues = getDHTValues();
     gpsValues = readGPS();
   }
   else {
     //set some values for testing display
-    rpm = 10000;
-    engTempC = 120;
-    ambiC = 2.5;
-    battV = 11.9;
-    tpsP = 69;
-    iatC = 45;
-    gear = 6;
-    gpsSpeed = 100;
-    bikeSpeed = 105;
+    table11.rpm = 10000;
+    table11.ectTemp = 120;
+    dhtValues.tempC = 2.5;
+    table11.battVolts = 11.9;
+    table11.tpsPercent = 69;
+    table11.iatTemp = 45;
+    gpsValues.speedMPH = 100;
+    table11.speed = 105;
+    tableD1.engState = 1;
+    tableD1.switchState = 3;
   }
   
   //draw code
-  drawRPMBar(rpm);
-  drawTempBar(engTempC);
-  drawAmbiTemp(ambiC);
-  drawBattVolt(battV);
-  drawTPS(tpsP);
-  drawIATC(iatC);
-  drawGear(gear);
+  drawRPMBar(table11.rpm);
+  drawTempBar(table11.ectTemp);
+  drawAmbiTemp(dhtValues.tempC);
+  drawBattVolt(table11.battVolts);
+  drawTPS(table11.tpsPercent);
+  drawIATC(table11.iatTemp);
+  drawSidestandIcon(tableD1.switchState);
+  drawEngineIcon(tableD1.engState);
+  drawGPSIcon(gpsValues.gpsLock);
+  drawSpeed(gpsValues.speedMPH, table11.speed);
+  drawCardinal(gpsValues.cardinalDirection);
+
+  //TODO: Implement below methods, set to 0 so show as off
+  //drawGear(0);
+  //drawFanIcon(0);
 
   if(DEBUG) {
     //printDebugValues();
