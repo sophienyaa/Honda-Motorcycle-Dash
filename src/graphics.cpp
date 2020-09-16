@@ -45,7 +45,7 @@ void setupUI() {
     tft.fillScreen(ILI9341_BLACK);
     //used for static elements
     drawRPMUI();
-    drawGearIndBox();
+    //drawGearIndBox();
     drawEngTempBar();
     drawIconBox();
 }
@@ -262,6 +262,8 @@ void drawEngTempBar() {
   tft.fillRect(25,70,4,2, ILI9341_RED);
   tft.fillRect(25,94,4,2, ILI9341_RED);
   
+  tft.setTextColor(ILI9341_WHITE,ILI9341_BLACK);
+
   tft.setFont(&Furara8pt7b);
   tft.setCursor(0,236);
   tft.print("TEMP °C");
@@ -278,3 +280,70 @@ void drawEngTempBar() {
   tft.setCursor(256,236);
   tft.print("AMBI °C");
 }
+
+void drawSidestandIcon(int stand) {
+  if(stand == 3) {
+    tft.drawBitmap(80,0, sidestand, 32, 32, ILI9341_RED);
+  }
+  else {
+    tft.drawBitmap(80,0, sidestand, 32, 32, DARK_GREEN);
+  }
+}
+
+void drawEngineIcon(int engine) {
+  if(engine == 0) {
+    tft.drawBitmap(0,0, engineIcon, 32, 32, ILI9341_ORANGE);
+  }
+  else {
+    tft.drawBitmap(0,0, engineIcon, 32, 32, DARK_GREEN);
+  }
+}
+
+void drawGPSIcon(int gpsStatus) {
+  if(gpsStatus == 1) {
+    tft.drawBitmap(120,0, gpsIcon, 32, 32, ILI9341_WHITE);
+  }
+  else {
+    tft.drawBitmap(120,0, gpsIcon, 32, 32, DARK_GREEN);
+  }
+}
+
+void drawFanIcon(int gpsStatus) {
+  if(gpsStatus == 1) {
+    tft.drawBitmap(280,0, fanIcon, 32, 32, ILI9341_RED);
+  }
+  else {
+    tft.drawBitmap(280,0, fanIcon, 32, 32, DARK_GREEN);
+  }
+}
+
+void drawSpeed(int gpsSpeed, int bikeSpeed) {
+  //use GPS speed if possible, othwerwise use bike speed
+  int speedToDraw = gpsSpeed > 0 ? gpsSpeed : bikeSpeed;
+    
+  GFXcanvas16 canvas(160, 100);
+  canvas.setTextColor(ILI9341_WHITE);
+  canvas.setFont(&DS_DIGI60pt7b);
+  canvas.setCursor(0,75);
+  canvas.print(speedToDraw);
+
+  canvas.setFont(&Furara8pt7b);
+  canvas.setCursor(108,100);
+  canvas.print("MPH");
+
+  tft.drawRGBBitmap(40,80,canvas.getBuffer(),160,100);
+}
+
+
+void drawCardinal(const char* cardinal) {
+  GFXcanvas16 canvas(80, 50);
+  canvas.setTextColor(ILI9341_WHITE);
+  canvas.setFont(&DS_DIGI16pt7b); 
+  canvas.setCursor(15,20);
+  canvas.print(cardinal);
+  canvas.setFont(&Furara8pt7b);
+  canvas.setCursor(0,48);
+  canvas.print("HEADING");
+  tft.drawRGBBitmap(240,142,canvas.getBuffer(),80,50);
+}
+

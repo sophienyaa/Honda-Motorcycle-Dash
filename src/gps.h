@@ -12,7 +12,8 @@ GND         GND
 struct GPSRESPONSE {
     double speedMPH;
     double speedKPH;
-    //more to come
+    int gpsLock;
+    const char* cardinalDirection;
 };
 
 void setupGPS();
