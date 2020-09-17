@@ -36,7 +36,7 @@ Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC, TFT_RST);
 
 void setupDisplay() {
     tft.begin();
-    tft.setRotation(3);
+    tft.setRotation(1);
     tft.fillScreen(ILI9341_BLACK);
     tft.drawBitmap(0,0, hondaLogo, 320, 240, ILI9341_WHITE);
 }
