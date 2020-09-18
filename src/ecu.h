@@ -13,7 +13,7 @@ GND         GND
 struct TABLE11RESPONSE {
 
     uint16_t rpm;
-    uint8_t speed;
+    uint8_t speedKPH;
 
     uint8_t tpsPercent;
     uint8_t tpsVolts;

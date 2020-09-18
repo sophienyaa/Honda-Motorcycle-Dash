@@ -20,9 +20,9 @@ float calcValueDivide10(int val) {
 }
 
 float calcValueDivide16(int val) {
-  //value divided by 16
+  //value divided by 16 and times 10
   //used for TPS%
-  return val/16;
+  return (val/16)*10;
 }
 
 uint8_t calcChecksum(const uint8_t* data, uint8_t len) {
@@ -30,4 +30,8 @@ uint8_t calcChecksum(const uint8_t* data, uint8_t len) {
    for (uint8_t i = 0; i < len; i++)
       cksum -= data[i];
    return cksum;
+}
+
+float calcKPHtoMPH(int val) {
+  return val / 1.609344;
 }
