@@ -4,9 +4,11 @@
 
 ## What is this?
 
-This is my attempt to build an information display / dashboard replacement for Honda motorcycles. It connects to the bike via its diagnostic port and reads information directly from the ECU
+This is my attempt to build an information display / dashboard replacement (or additon) for modern Honda motorcycles. It connects to the bike via its diagnostic port and reads information directly from the ECU
 
 It also contains a GPS module and support for an ambient temperature / humidity sensor
+
+![The Display Device](dash.jpg | width=640)
 
 ## Hardware
 
@@ -71,8 +73,3 @@ Arduino Libraries and Tools
 This code is provided under the GNU GPLv3 and includes NO WARRANTY.
 
 The authors accept NO LIABILITY for damages or destruction to any property or persons through the use of this software or hardware design.
-
-
-
-
-
