@@ -8,7 +8,7 @@ This is my attempt to build an information display / dashboard replacement (or a
 
 It also contains a GPS module and support for an ambient temperature / humidity sensor
 
-![The Display Device](dash.jpg | width=640)
+![The Display Device](dash.jpg?v=4&s=200)
 
 ## Hardware
 
