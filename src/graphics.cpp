@@ -2,6 +2,7 @@
 #include "Adafruit_ILI9341.h"
 #include <Wire.h>
 #include "SPI.h"
+#include "utils.h"
 
 //FONTS
 #include <fonts/DS_DIGI16pt7b.h> //DS_DIGI 16pt
@@ -319,19 +320,26 @@ void drawFanIcon(int gpsStatus) {
 
 void drawSpeed(int gpsSpeed, int bikeSpeed) {
   //use GPS speed if possible, othwerwise use bike speed
-  int speedToDraw = gpsSpeed > 0 ? gpsSpeed : bikeSpeed;
+  int speedKPH = gpsSpeed > 0 ? gpsSpeed : bikeSpeed;
+  int speedMPH = calcKPHtoMPH(speedKPH);
     
-  GFXcanvas16 canvas(160, 100);
+  GFXcanvas16 canvas(180, 105);
   canvas.setTextColor(ILI9341_WHITE);
   canvas.setFont(&DS_DIGI60pt7b);
   canvas.setCursor(0,75);
-  canvas.print(speedToDraw);
+  canvas.print(speedMPH);
+
+  canvas.setCursor(0,100);
+  canvas.setFont(&DS_DIGI16pt7b); 
+  canvas.print(speedKPH);
 
   canvas.setFont(&Furara8pt7b);
-  canvas.setCursor(108,100);
+  canvas.setCursor(50,100);
+  canvas.print("KPH");
+  canvas.setCursor(140,10);
   canvas.print("MPH");
 
-  tft.drawRGBBitmap(40,80,canvas.getBuffer(),160,100);
+  tft.drawRGBBitmap(40,80,canvas.getBuffer(),180,105);
 }
 
 
