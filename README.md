@@ -24,7 +24,7 @@ Eagle CAD files for the hardware are available in the `pcb` folder, and designs 
 
 ## Software & Features
 
-The code is written for the ESP32 in C++ and is designed to be built with PlatformIO
+The code is written for the ESP32 in C\C++ and is designed to be built with PlatformIO
 
 On startup the device connects to the bike's ECU and displays the following information
 
