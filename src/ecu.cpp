@@ -96,7 +96,7 @@ TABLE11RESPONSE showDataTable11() {
     response.ectTemp = calcValueMinus40(buff[14]);
     response.iatTemp = calcValueMinus40(buff[16]);
     response.battVolts = calcValueDivide10(buff[21]);
-    response.speed = buff[22];
+    response.speedKPH = buff[22];
     response.tpsVolts = calcValueDivide256(buff[11]);
     response.mapVolts = calcValueDivide256(buff[17]);
     response.mapPressure = buff[18];

@@ -42,7 +42,7 @@ GPSRESPONSE gpsValues;
     table11.tpsPercent = 69;
     table11.iatTemp = 45;
     gpsValues.speedMPH = 100;
-    table11.speed = 105;
+    table11.speedKPH = 105;
     tableD1.engState = 1;
     tableD1.switchState = 3;
   }
@@ -57,7 +57,7 @@ GPSRESPONSE gpsValues;
   drawSidestandIcon(tableD1.switchState);
   drawEngineIcon(tableD1.engState);
   drawGPSIcon(gpsValues.gpsLock);
-  drawSpeed(gpsValues.speedMPH, table11.speed);
+  drawSpeed(gpsValues.speedKPH, table11.speedKPH);
   drawCardinal(gpsValues.cardinalDirection);
 
   //TODO: Implement below methods, set to 0 so show as off
