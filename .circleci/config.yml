@@ -10,7 +10,7 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/python:latest
     steps:
       - checkout
       - run:
