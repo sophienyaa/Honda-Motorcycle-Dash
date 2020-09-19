@@ -1,5 +1,13 @@
 version: 2
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+
 jobs:
+
   build:
     docker:
       - image: cimg/node:latest
@@ -11,9 +19,3 @@ jobs:
       - run:
           name: Run Build
           command: . build/build.sh
- 
-workflows:
-  version: 2
-  validate:
-    jobs:
-      - build:
