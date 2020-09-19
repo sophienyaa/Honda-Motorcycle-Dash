@@ -1,6 +1,6 @@
 # Honda Motorcycle Dash
 
-**NOTE: This is a work in progress**
+**NOTE: This is a 'Alpha' and a work in progress**
 
 ## What is this?
 
