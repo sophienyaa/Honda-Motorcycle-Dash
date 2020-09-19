@@ -1,0 +1,21 @@
+version: 2
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+
+jobs:
+
+  build:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies & Platform
+          command: . build/install.sh
+      - run:
+          name: Run Build
+          command: . build/build.sh
