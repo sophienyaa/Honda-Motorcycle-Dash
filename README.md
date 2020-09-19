@@ -8,11 +8,11 @@ This is my attempt to build an information display / dashboard replacement (or a
 
 It also contains a GPS module and support for an ambient temperature / humidity sensor
 
-![The Display Device](dash.jpg | width=640)
+![The Display Device](dash.jpg?v=4&s=200)
 
 ## Hardware
 
-The below hardware is used in the final design. For further information see the [hardware](https://github.com/mickwheelz/Honda-Motorcycle-Dash/wiki/Hardware) section of the wiki
+The below hardware is used in the current design. For further information see the [hardware](https://github.com/mickwheelz/Honda-Motorcycle-Dash/wiki/Hardware) section of the wiki
 
 * Espressif ESP32 (Node32S for development, ESP32WROOM for build)
 * 2.8" ILI9341 based SPI TFT Display
@@ -24,7 +24,7 @@ Eagle CAD files for the hardware are available in the `pcb` folder, and designs 
 
 ## Software & Features
 
-The code is written for the ESP32 in C++ and is designed to be built with PlatformIO
+The code is written for the ESP32 in C\C++ and is designed to be built with PlatformIO
 
 On startup the device connects to the bike's ECU and displays the following information
 
