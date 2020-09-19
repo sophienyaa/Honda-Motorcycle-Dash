@@ -2,6 +2,8 @@
 
 **NOTE: This is a 'Alpha' and a work in progress**
 
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield)](https://circleci.com/gh/mickwheelz/Honda-Motorcycle-Dash)
+
 ## What is this?
 
 This is my attempt to build an information display / dashboard replacement (or additon) for modern Honda motorcycles. It connects to the bike via its diagnostic port and reads information directly from the ECU
