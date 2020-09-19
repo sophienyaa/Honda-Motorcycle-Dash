@@ -12,8 +12,11 @@
 
 int ecuConnected = 0;
 
+void printDebugValues();
+
 void setup() {
   setupDHT();
+  setupGPS();
   setupDisplay();
   ecuConnected = setupECU(DEBUG);
   setupUI();
@@ -65,6 +68,10 @@ GPSRESPONSE gpsValues;
   //drawFanIcon(0);
 
   if(DEBUG) {
-    //printDebugValues();
+    printDebugValues();
   }
+}
+
+void printDebugValues() {
+  //TODO: this
 }

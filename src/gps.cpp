@@ -2,8 +2,8 @@
 #include "gps.h"
 
 #define gpsUART Serial1
-#define GPS_RX 12
-#define GPX_TX 14
+#define GPS_RX 14
+#define GPX_TX 12
 
 TinyGPSPlus gps;
 
@@ -20,5 +20,6 @@ GPSRESPONSE readGPS() {
   response.speedMPH = gps.speed.mph();
   response.gpsLock = gps.sentencesWithFix() > 0 ? 1 : 0;
   response.cardinalDirection = gps.course.isValid() ? gps.cardinal(gps.course.deg()) : "---";
+
   return response;
 }
